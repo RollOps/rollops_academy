@@ -1,19 +1,21 @@
 /**
  * Site Configuration Registry
  *
- * Each gym/academy hosted on rollops.academy gets a config entry here.
+ * Each business hosted on the RollOps Pro platform gets a config entry here.
  * The subdomain key maps to the site config used for routing, theming, and content.
  */
 
 export interface SiteConfig {
-  /** Subdomain identifier (e.g., "onyx" for onyx.rollops.academy) */
+  /** Subdomain identifier (e.g., "onyx" for onyx.rollops.pro) */
   subdomain: string
-  /** Display name of the gym */
+  /** Display name of the business */
   name: string
   /** Tagline or short description */
   tagline: string
   /** Location info */
   location: string
+  /** Path to logo image (in public/) */
+  logo?: string
   /** Brand colors */
   theme: {
     primary: string
@@ -23,6 +25,7 @@ export interface SiteConfig {
     surface: string
     text: string
     textMuted: string
+    border?: string
   }
   /** Social links */
   social?: {
@@ -43,8 +46,8 @@ export interface SiteConfig {
 }
 
 /**
- * Registry of all hosted gym sites.
- * Add new entries here when onboarding a gym.
+ * Registry of all hosted sites.
+ * Add new entries here when onboarding a customer.
  */
 export const siteRegistry: Record<string, SiteConfig> = {
   onyx: {
@@ -53,13 +56,14 @@ export const siteRegistry: Record<string, SiteConfig> = {
     tagline: 'Brazilian Jiu-Jitsu in Safford, Arizona',
     location: 'Safford, AZ',
     theme: {
-      primary: '#1a1a2e',
-      secondary: '#16213e',
-      accent: '#e94560',
+      primary: '#188bf6',
+      secondary: '#1a1a2e',
+      accent: '#37ca37',
       background: '#0f0f0f',
       surface: '#1a1a1a',
       text: '#ffffff',
       textMuted: '#a0a0a0',
+      border: '#333333',
     },
     social: {
       facebook: 'https://www.facebook.com/onyxbjj',
@@ -76,17 +80,18 @@ export const siteRegistry: Record<string, SiteConfig> = {
 /** Default/fallback config shown when no subdomain matches */
 export const defaultSiteConfig: SiteConfig = {
   subdomain: '',
-  name: 'RollOps Academy',
-  tagline: 'Managed Websites for Martial Arts Academies',
+  name: 'RollOps Pro',
+  tagline: 'Professional Web Hosting & Management',
   location: '',
   theme: {
-    primary: '#6366f1',
-    secondary: '#4f46e5',
-    accent: '#f59e0b',
-    background: '#0f172a',
-    surface: '#1e293b',
-    text: '#f8fafc',
-    textMuted: '#94a3b8',
+    primary: '#9B1421',
+    secondary: '#7A0F1A',
+    accent: '#9B1421',
+    background: '#111010',
+    surface: '#221F1F',
+    text: '#FFFFFF',
+    textMuted: '#E0E0E0',
+    border: '#504A4A',
   },
   authEnabled: false,
 }

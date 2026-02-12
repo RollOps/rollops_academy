@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 
 import type { SiteConfig } from '@/config/sites'
+import { LogoPlaceholder } from '@/components/ui/LogoPlaceholder'
 
 interface NavbarProps {
   site: SiteConfig
@@ -13,8 +14,15 @@ export function Navbar({ site }: NavbarProps) {
       style={{ backgroundColor: `${site.theme.primary}ee` }}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <Link to="/" className="text-xl font-bold tracking-wider" style={{ color: site.theme.text }}>
-          {site.name}
+        <Link to="/" className="flex items-center gap-3">
+          {site.logo ? (
+            <img src={site.logo} alt={site.name} className="h-8 w-8 rounded-full object-cover" />
+          ) : (
+            <LogoPlaceholder name={site.name} color={site.theme.accent} size={32} />
+          )}
+          <span className="text-xl font-bold tracking-wider" style={{ color: site.theme.text }}>
+            {site.name}
+          </span>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
