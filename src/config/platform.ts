@@ -13,4 +13,6 @@ export const PLATFORM = {
   freeSubdomain: 'rollops.academy',
   /** Domain registrar partner for custom domains */
   domainRegistrar: 'name.com',
+  /** CNAME target for customers pointing custom domains */
+  cnameTarget: 'customers.rollops.academy',
 } as const

@@ -50,7 +50,7 @@ export function DnsSetupPage() {
             <li>Add a <strong>CNAME record</strong>:
               <ul className="ml-6 mt-1 list-disc text-[#E0E0E0]">
                 <li><strong>Name/Host:</strong> www (or @ for root domain)</li>
-                <li><strong>Value/Points to:</strong> sites.{PLATFORM.domain}</li>
+                <li><strong>Value/Points to:</strong> {PLATFORM.cnameTarget}</li>
                 <li><strong>TTL:</strong> 3600 (or default)</li>
               </ul>
             </li>

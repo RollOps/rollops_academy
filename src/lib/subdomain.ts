@@ -12,6 +12,18 @@
 
 const PRODUCTION_DOMAINS = ['rollops.academy', 'rollops.pro']
 
+/**
+ * Maps custom domains to their subdomain identifier.
+ * When a customer points their domain to us via Cloudflare for SaaS,
+ * add their domain(s) here so the SPA knows which site to render.
+ *
+ * Both apex and www variants should be listed.
+ */
+const CUSTOM_DOMAINS: Record<string, string> = {
+  // 'onyxbjj.com': 'onyx',
+  // 'www.onyxbjj.com': 'onyx',
+}
+
 export function getSubdomain(): string | null {
   const hostname = window.location.hostname
 
@@ -27,6 +39,11 @@ export function getSubdomain(): string | null {
       const sub = hostname.replace(`.${domain}`, '')
       return sub === domain || sub === '' ? null : sub
     }
+  }
+
+  // Custom domain: onyxbjj.com -> "onyx"
+  if (CUSTOM_DOMAINS[hostname]) {
+    return CUSTOM_DOMAINS[hostname]
   }
 
   // Query param override for development: ?site=onyx

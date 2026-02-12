@@ -30,3 +30,7 @@ dist-ssr
 
 # MCP config (contains API keys)
 .mcp.json
+
+# Wrangler
+.dev.vars
+.wrangler/
