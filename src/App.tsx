@@ -8,6 +8,7 @@ import { LoginPage } from '@/pages/LoginPage'
 import { GetStartedPage } from '@/pages/GetStartedPage'
 import { CustomerDashboard } from '@/pages/dashboard/CustomerDashboard'
 import { HoursPage } from '@/pages/dashboard/HoursPage'
+import { MediaPage } from '@/pages/dashboard/MediaPage'
 import { AdminDashboard } from '@/pages/admin/AdminDashboard'
 import { OnyxHome } from '@/sites/onyx-bjj/pages/OnyxHome'
 
@@ -43,6 +44,11 @@ export default function App() {
           <Route path="/dashboard/hours" element={
             <ProtectedRoute allowedRoles={['hosting_customer', 'platform_admin']}>
               <HoursPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/dashboard/media" element={
+            <ProtectedRoute allowedRoles={['hosting_customer', 'platform_admin']}>
+              <MediaPage />
             </ProtectedRoute>
           } />
           <Route path="/admin" element={

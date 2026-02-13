@@ -91,6 +91,20 @@ export function CustomerDashboard() {
                 View Details
               </Link>
             </div>
+
+            {/* Media Library Card */}
+            <div className="rounded-xl border border-[#504A4A] bg-[#221F1F] p-6 md:col-span-2">
+              <h2 className="mb-2 text-lg font-bold">Media Library</h2>
+              <p className="mb-4 text-sm text-[#E0E0E0]">
+                Upload images and videos for your site. Get public URLs to use anywhere.
+              </p>
+              <Link
+                to="/dashboard/media"
+                className="inline-block rounded-lg bg-[#9B1421] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#7A0F1A]"
+              >
+                Manage Media
+              </Link>
+            </div>
           </div>
         ) : (
           <div className="rounded-xl border border-[#504A4A] bg-[#221F1F] p-8 text-center">
