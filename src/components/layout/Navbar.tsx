@@ -26,8 +26,9 @@ export function Navbar({ site }: NavbarProps) {
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
-          <NavLink href="/#about" label="About" color={site.theme.textMuted} />
+          <NavLink href="/#programs" label="Programs" color={site.theme.textMuted} />
           <NavLink href="/#schedule" label="Schedule" color={site.theme.textMuted} />
+          <NavLink href="/#about" label="About" color={site.theme.textMuted} />
           <NavLink href="/#contact" label="Contact" color={site.theme.textMuted} />
           {site.authEnabled && (
             <Link

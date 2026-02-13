@@ -50,27 +50,29 @@ export interface SiteConfig {
  * Add new entries here when onboarding a customer.
  */
 export const siteRegistry: Record<string, SiteConfig> = {
-  onyx: {
-    subdomain: 'onyx',
-    name: 'Onyx BJJ',
-    tagline: 'Brazilian Jiu-Jitsu in Safford, Arizona',
+  onyxbjj: {
+    subdomain: 'onyxbjj',
+    name: 'Onyx Jiu-Jitsu',
+    tagline: 'Checkmat Affiliate — Brazilian Jiu-Jitsu in Safford, Arizona',
     location: 'Safford, AZ',
     theme: {
-      primary: '#188bf6',
-      secondary: '#1a1a2e',
+      primary: '#000000',
+      secondary: '#1a1a1a',
       accent: '#37ca37',
-      background: '#0f0f0f',
-      surface: '#1a1a1a',
+      background: '#0a0a0a',
+      surface: '#141414',
       text: '#ffffff',
-      textMuted: '#a0a0a0',
-      border: '#333333',
+      textMuted: '#b0b0b0',
+      border: '#2a2a2a',
     },
     social: {
       facebook: 'https://www.facebook.com/onyxbjj',
-      instagram: 'https://www.instagram.com/onyxbjj',
+      instagram: 'https://www.instagram.com/onyxbjj_/',
     },
     contact: {
-      address: 'Safford, AZ',
+      phone: '928-651-6311',
+      email: 'info@onyxbjj.com',
+      address: '408 W Main St, Safford, AZ 85546',
     },
     authEnabled: true,
     originalUrl: 'https://onyxbjj.com',

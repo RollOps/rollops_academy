@@ -72,7 +72,7 @@ export default function App() {
 
 function SiteHomePage({ subdomain, site }: { subdomain: string; site: ReturnType<typeof useSiteConfig> }) {
   switch (subdomain) {
-    case 'onyx':
+    case 'onyxbjj':
       return <OnyxHome site={site} />
     default:
       return <LandingPage />

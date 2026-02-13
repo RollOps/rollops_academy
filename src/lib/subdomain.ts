@@ -20,8 +20,8 @@ const PRODUCTION_DOMAINS = ['rollops.academy', 'rollops.pro']
  * Both apex and www variants should be listed.
  */
 const CUSTOM_DOMAINS: Record<string, string> = {
-  // 'onyxbjj.com': 'onyx',
-  // 'www.onyxbjj.com': 'onyx',
+  // 'onyxbjj.com': 'onyxbjj',
+  // 'www.onyxbjj.com': 'onyxbjj',
 }
 
 export function getSubdomain(): string | null {

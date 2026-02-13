@@ -20,7 +20,7 @@ export const customerMappings: Record<string, CustomerMapping> = {
   // Example:
   // 'uuid-from-supabase': {
   //   userId: 'uuid-from-supabase',
-  //   subdomain: 'onyx',
+  //   subdomain: 'onyxbjj',
   //   siteName: 'Onyx BJJ',
   //   initialHoursUsed: 3,
   //   monthlyHoursUsed: 1,
