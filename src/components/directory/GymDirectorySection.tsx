@@ -5,7 +5,7 @@ import { GymMap } from './GymMap'
 import { GymSearchBar } from './GymSearchBar'
 import { GymDetailPanel } from './GymDetailPanel'
 
-const GOOGLE_MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_KEY as string
+const GOOGLE_MAPS_KEY = import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string
 
 export function GymDirectorySection() {
   const [search, setSearch] = useState('')

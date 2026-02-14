@@ -58,7 +58,6 @@ function getUpcomingClasses() {
 
 export function GymDetailPanel({ gym, onClose }: GymDetailPanelProps) {
   const initial = gym.name.charAt(0).toUpperCase()
-  const gymUrl = gym.is_hosted && gym.hosted_url ? gym.hosted_url : gym.website_url
   // All gyms can sign up via rollops.pro — gym.id IS the company UUID in the shared DB
   const signupUrl = `https://rollops.pro/signup/${gym.id}`
 

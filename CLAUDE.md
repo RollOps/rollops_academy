@@ -41,7 +41,7 @@ Other rollops.pro signup routes:
 ```
 VITE_SUPABASE_URL          — Shared Supabase project URL
 VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY — Supabase anon key
-VITE_GOOGLE_MAPS_KEY       — Google Maps API key
+VITE_GOOGLE_MAPS_API_KEY       — Google Maps API key
 VITE_GOOGLE_MAP_ID         — Custom map styling (optional)
 ```
 
