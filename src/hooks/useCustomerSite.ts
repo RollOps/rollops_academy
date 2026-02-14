@@ -1,13 +1,19 @@
-import { useMemo } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 import { useAuth } from '@/providers/AuthProvider'
-import { customerMappings } from '@/config/customers'
+import { fetchProfileByUserId, type CustomerProfile } from '@/lib/customerProfile'
 
-export function useCustomerSite() {
+export function useCustomerSite(): { customer: CustomerProfile | null; isLoading: boolean } {
   const { user } = useAuth()
 
-  return useMemo(() => {
-    if (!user) return null
-    return customerMappings[user.id] ?? null
-  }, [user])
+  const { data, isLoading } = useQuery({
+    queryKey: ['customer-profile', user?.id],
+    queryFn: () => fetchProfileByUserId(user!.id),
+    enabled: !!user,
+  })
+
+  return {
+    customer: data ?? null,
+    isLoading,
+  }
 }

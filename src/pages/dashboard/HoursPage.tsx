@@ -4,7 +4,7 @@ import { PLATFORM } from '@/config/platform'
 
 export function HoursPage() {
   const { user, signOut } = useAuth()
-  const customer = useCustomerSite()
+  const { customer } = useCustomerSite()
 
   return (
     <div className="min-h-screen bg-[#111010] text-white">
@@ -45,12 +45,12 @@ export function HoursPage() {
               </p>
               <div className="mb-2 flex justify-between text-sm">
                 <span className="text-[#E0E0E0]">Hours Used</span>
-                <span className="font-semibold text-white">{customer.initialHoursUsed} / {PLATFORM.initialHours}</span>
+                <span className="font-semibold text-white">{customer.initial_hours_used} / {PLATFORM.initialHours}</span>
               </div>
               <div className="h-3 overflow-hidden rounded-full bg-[#504A4A]">
                 <div
                   className="h-full rounded-full bg-[#9B1421] transition-all"
-                  style={{ width: `${Math.min((customer.initialHoursUsed / PLATFORM.initialHours) * 100, 100)}%` }}
+                  style={{ width: `${Math.min((customer.initial_hours_used / PLATFORM.initialHours) * 100, 100)}%` }}
                 />
               </div>
             </div>
@@ -63,12 +63,12 @@ export function HoursPage() {
               </p>
               <div className="mb-2 flex justify-between text-sm">
                 <span className="text-[#E0E0E0]">Hours Used</span>
-                <span className="font-semibold text-white">{customer.monthlyHoursUsed} / {PLATFORM.monthlyHours}</span>
+                <span className="font-semibold text-white">{customer.monthly_hours_used} / {PLATFORM.monthlyHours}</span>
               </div>
               <div className="h-3 overflow-hidden rounded-full bg-[#504A4A]">
                 <div
                   className="h-full rounded-full bg-[#37ca37] transition-all"
-                  style={{ width: `${Math.min((customer.monthlyHoursUsed / PLATFORM.monthlyHours) * 100, 100)}%` }}
+                  style={{ width: `${Math.min((customer.monthly_hours_used / PLATFORM.monthlyHours) * 100, 100)}%` }}
                 />
               </div>
             </div>

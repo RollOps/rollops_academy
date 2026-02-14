@@ -1,13 +1,12 @@
 import type { Session } from '@supabase/supabase-js'
 
 import { decodeJWTPayload } from './jwt'
-import { customerMappings } from '@/config/customers'
 
 /**
  * Platform role for routing within the hosting platform.
  *
- * - platform_admin: RollOps staff (is_admin or is_developer in JWT)
- * - hosting_customer: Has an active/pending hosted site
+ * - platform_admin: RollOps staff (is_admin or is_developer in JWT, set by admins table)
+ * - hosting_customer: Has a customer_profiles entry in the database
  * - owner: Logged-in owner without a hosted site → show sales page
  * - authenticated: Any other valid user → show generic welcome
  */
@@ -32,14 +31,17 @@ export function getJWTClaims(session: Session | null): JWTClaims {
   }
 }
 
-export function getPlatformRole(session: Session | null, userId: string | undefined): PlatformRole {
+export function getPlatformRole(
+  session: Session | null,
+  hasCustomerProfile: boolean,
+): PlatformRole {
   const claims = getJWTClaims(session)
 
-  // System-level admin or developer → platform admin
+  // System-level admin or developer (set by RollOps custom_access_token_hook via admins table)
   if (claims.is_admin || claims.is_developer) return 'platform_admin'
 
-  // Has a hosted site → hosting customer
-  if (userId && customerMappings[userId]) return 'hosting_customer'
+  // Has a customer_profiles entry in the database
+  if (hasCustomerProfile) return 'hosting_customer'
 
   // Owner role in RollOps but no hosted site → show sales page
   if (claims.user_role === 'owner') return 'owner'

@@ -6,7 +6,7 @@ import { PLATFORM } from '@/config/platform'
 
 export function CustomerDashboard() {
   const { user, signOut } = useAuth()
-  const customer = useCustomerSite()
+  const { customer } = useCustomerSite()
 
   return (
     <div className="min-h-screen bg-[#111010] text-white">
@@ -39,7 +39,7 @@ export function CustomerDashboard() {
             {/* Site Preview Card */}
             <div className="rounded-xl border border-[#504A4A] bg-[#221F1F] p-6">
               <h2 className="mb-2 text-lg font-bold">Your Site</h2>
-              <p className="mb-1 text-sm text-[#E0E0E0]">{customer.siteName}</p>
+              <p className="mb-1 text-sm text-[#E0E0E0]">{customer.business_name}</p>
               <div className="mb-4">
                 <span
                   className={`inline-block rounded-full px-3 py-1 text-xs font-semibold ${
@@ -75,12 +75,12 @@ export function CustomerDashboard() {
               <div className="space-y-4">
                 <HoursBar
                   label="Initial Conversion"
-                  used={customer.initialHoursUsed}
+                  used={customer.initial_hours_used}
                   total={PLATFORM.initialHours}
                 />
                 <HoursBar
                   label="Monthly Updates"
-                  used={customer.monthlyHoursUsed}
+                  used={customer.monthly_hours_used}
                   total={PLATFORM.monthlyHours}
                 />
               </div>

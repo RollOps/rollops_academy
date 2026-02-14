@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { supabase } from '@/lib/supabase'
 import { getPlatformRole } from '@/lib/roles'
+import { fetchProfileByUserId } from '@/lib/customerProfile'
 import type { SiteConfig } from '@/config/sites'
 
 interface LoginFormProps {
@@ -48,7 +49,8 @@ export function LoginForm({ site }: LoginFormProps) {
       }
 
       if (data.user && data.session) {
-        const role = getPlatformRole(data.session, data.user.id)
+        const profile = await fetchProfileByUserId(data.user.id)
+        const role = getPlatformRole(data.session, !!profile)
         switch (role) {
           case 'platform_admin':
             navigate('/admin', { replace: true })

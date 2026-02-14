@@ -13,8 +13,8 @@ import {
 const QUERY_KEY = 'media-files'
 
 export function useMediaUpload(subdomainOverride?: string) {
-  const customer = useCustomerSite()
-  const role = usePlatformRole()
+  const { customer } = useCustomerSite()
+  const { role } = usePlatformRole()
   const queryClient = useQueryClient()
 
   const subdomain = subdomainOverride ?? customer?.subdomain ?? null

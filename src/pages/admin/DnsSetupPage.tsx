@@ -1,6 +1,9 @@
 import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+
 import { PLATFORM } from '@/config/platform'
-import { customerMappings } from '@/config/customers'
+import { supabase } from '@/lib/supabase'
+import type { CustomerProfile } from '@/lib/customerProfile'
 
 interface DnsChecklist {
   customerNotified: boolean
@@ -19,7 +22,17 @@ const defaultChecklist: DnsChecklist = {
 }
 
 export function DnsSetupPage() {
-  const customers = Object.values(customerMappings)
+  const { data: customers = [] } = useQuery<CustomerProfile[]>({
+    queryKey: ['admin-customers'],
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('customer_profiles')
+        .select('*')
+        .order('created_at', { ascending: false })
+      if (error) throw error
+      return data as CustomerProfile[]
+    },
+  })
   const [checklists, setChecklists] = useState<Record<string, DnsChecklist>>({})
 
   function toggleItem(userId: string, key: keyof DnsChecklist) {
@@ -71,16 +84,16 @@ export function DnsSetupPage() {
       ) : (
         <div className="space-y-4">
           {customers.map((c) => {
-            const cl = checklists[c.userId] ?? defaultChecklist
+            const cl = checklists[c.id] ?? defaultChecklist
             return (
-              <div key={c.userId} className="rounded-xl border border-[#504A4A] bg-[#221F1F] p-6">
-                <h4 className="mb-4 text-base font-bold">{c.siteName} ({c.subdomain}.{PLATFORM.domain})</h4>
+              <div key={c.id} className="rounded-xl border border-[#504A4A] bg-[#221F1F] p-6">
+                <h4 className="mb-4 text-base font-bold">{c.business_name} ({c.subdomain}.{PLATFORM.freeSubdomain})</h4>
                 <div className="space-y-2">
-                  <ChecklistItem label="Customer notified of DNS changes" checked={cl.customerNotified} onChange={() => toggleItem(c.userId, 'customerNotified')} />
-                  <ChecklistItem label="CNAME record added" checked={cl.cnameAdded} onChange={() => toggleItem(c.userId, 'cnameAdded')} />
-                  <ChecklistItem label="SSL certificate provisioned" checked={cl.sslProvisioned} onChange={() => toggleItem(c.userId, 'sslProvisioned')} />
-                  <ChecklistItem label="DNS propagation verified" checked={cl.dnsPropagated} onChange={() => toggleItem(c.userId, 'dnsPropagated')} />
-                  <ChecklistItem label="Site live on custom domain" checked={cl.siteLive} onChange={() => toggleItem(c.userId, 'siteLive')} />
+                  <ChecklistItem label="Customer notified of DNS changes" checked={cl.customerNotified} onChange={() => toggleItem(c.id, 'customerNotified')} />
+                  <ChecklistItem label="CNAME record added" checked={cl.cnameAdded} onChange={() => toggleItem(c.id, 'cnameAdded')} />
+                  <ChecklistItem label="SSL certificate provisioned" checked={cl.sslProvisioned} onChange={() => toggleItem(c.id, 'sslProvisioned')} />
+                  <ChecklistItem label="DNS propagation verified" checked={cl.dnsPropagated} onChange={() => toggleItem(c.id, 'dnsPropagated')} />
+                  <ChecklistItem label="Site live on custom domain" checked={cl.siteLive} onChange={() => toggleItem(c.id, 'siteLive')} />
                 </div>
               </div>
             )

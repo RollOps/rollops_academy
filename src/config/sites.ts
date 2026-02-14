@@ -43,6 +43,16 @@ export interface SiteConfig {
   authEnabled: boolean
   /** The original website being replicated (for reference) */
   originalUrl?: string
+  /** Key mapping to a custom-built React component (e.g. 'onyxbjj') */
+  customComponent?: string
+  /** Longer business description for the About section */
+  description?: string
+  /** Hero background image URL */
+  heroImageUrl?: string
+  /** Services/programs offered — rendered as cards in the default template */
+  services?: Array<{ title: string; description: string }>
+  /** Operating hours by day of week */
+  hoursOfOperation?: Record<string, string>
 }
 
 /**
@@ -76,6 +86,7 @@ export const siteRegistry: Record<string, SiteConfig> = {
     },
     authEnabled: true,
     originalUrl: 'https://onyxbjj.com',
+    customComponent: 'onyxbjj',
   },
 }
 

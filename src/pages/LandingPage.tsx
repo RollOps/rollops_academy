@@ -15,6 +15,12 @@ export function LandingPage() {
             </span>
           </div>
           <div className="flex items-center gap-4">
+            <Link
+              to="/directory"
+              className="text-sm font-medium text-[#E0E0E0] transition-colors hover:text-white"
+            >
+              Find a Gym
+            </Link>
             <a
               href={`mailto:${PLATFORM.supportEmail}`}
               className="hidden text-sm font-medium text-[#E0E0E0] transition-colors hover:text-white sm:block"

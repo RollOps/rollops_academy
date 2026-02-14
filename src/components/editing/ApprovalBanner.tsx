@@ -1,16 +1,12 @@
-import { useAuth } from '@/providers/AuthProvider'
-import { useSiteConfig } from '@/hooks/useSiteConfig'
-import { customerMappings } from '@/config/customers'
+import { useCustomerSite } from '@/hooks/useCustomerSite'
+import { getSubdomain } from '@/lib/subdomain'
 import { PLATFORM } from '@/config/platform'
 
 export function ApprovalBanner() {
-  const { user, isAuthenticated } = useAuth()
-  const site = useSiteConfig()
+  const { customer } = useCustomerSite()
 
-  if (!isAuthenticated || !user || !site.subdomain) return null
-
-  const mapping = customerMappings[user.id]
-  if (!mapping || mapping.subdomain !== site.subdomain || mapping.status !== 'pending') return null
+  const subdomain = getSubdomain()
+  if (!customer || customer.subdomain !== subdomain || customer.status !== 'pending') return null
 
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 border-b border-yellow-600/30 bg-yellow-900/20 px-4 py-3">
